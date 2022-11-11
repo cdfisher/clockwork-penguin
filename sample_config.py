@@ -1,0 +1,7 @@
+"""sample_constants.py
+Constants for use by the Clockwork Penguin Discord bot.
+Add bot token and server name to this file and rename to 'constants.py' before use
+"""
+
+DISCORD_TOKEN=''
+DISCORD_GUILD=''
