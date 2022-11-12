@@ -12,6 +12,8 @@ Requires ```bot``` and ```applications.commands``` scopes and the following perm
 ### Python Dependencies
 ```requests ~= 2.27.1```
 
+```discord.py ~= 1.7.3```
+
 ```osrs-highscores @ git+https://github.com/cdfisher/osrs_highscores```
 
 ## Commands
