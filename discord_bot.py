@@ -29,7 +29,7 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    if message.content[:4] == '!cmb':
+    if message.content.lower()[:4] == '!cmb':
         rsn = message.content[5:]
 
         levels = calc_cmb_lvl(rsn)
@@ -53,7 +53,7 @@ async def on_message(message):
         await message.channel.send(response)
         print(f'Message sent: "{response}"/n')
 
-    elif message.content[:3] == '!hs':
+    elif message.content.lower()[:3] == '!hs':
         rsn = message.content[4:]
 
         get_hs(rsn)
@@ -63,7 +63,7 @@ async def on_message(message):
         await message.channel.send(f'{rsn}\'s OSRS Highscores:\n', file=file_payload)
         os.remove(file)
 
-    elif message.content[:7] == '!skills':
+    elif message.content.lower()[:7] == '!skills':
         rsn = message.content[8:]
 
         get_skills(rsn)
@@ -73,7 +73,7 @@ async def on_message(message):
         await message.channel.send(f'{rsn}\'s OSRS Skills:\n', file=file_payload)
         os.remove(file)
 
-    elif message.content[:7] == '!bosses':
+    elif message.content.lower()[:7] == '!bosses':
         rsn = message.content[8:]
 
         get_bosses(rsn)
@@ -83,7 +83,7 @@ async def on_message(message):
         await message.channel.send(f'{rsn}\'s OSRS Boss KC:\n', file=file_payload)
         os.remove(file)
 
-    elif message.content[:4] == '!ehb':
+    elif message.content.lower()[:4] == '!ehb':
         rsn = message.content[5:]
 
         calc_ehb(rsn)
@@ -93,7 +93,7 @@ async def on_message(message):
         await message.channel.send(f'{rsn}\'s OSRS efficient hours bossed:\n', file=file_payload)
         os.remove(file)
 
-    elif message.content[:11] == '!activities':
+    elif message.content.lower()[:11] == '!activities':
         rsn = message.content[12:]
 
         get_activities(rsn)
@@ -103,9 +103,12 @@ async def on_message(message):
         await message.channel.send(f'{rsn}\'s OSRS Activities:\n', file=file_payload)
         os.remove(file)
 
-    elif message.content[:3] == '!:P':
+    elif message.content.lower()[:3] == '!:p':
         await message.channel.send(':stuck_out_tongue_winking_eye:\n'
                                    '***__THBBBBBBBBBBBBBBBT!!!!__***')
+
+    elif message.content.lower()[:8] == '!version':
+        await message.channel.send(f'Running Clockwork Penguin {VERSION}\n')
 
 
 client.run(TOKEN)
