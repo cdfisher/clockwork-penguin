@@ -4,14 +4,23 @@ Contains event handlers, command parser and list of
 commands/responses.
 """
 
-import discord
 import os
+
+import discord
 
 from config import *
 from osrs_utils import *
 
-TOKEN = DISCORD_TOKEN
-GUILD = DISCORD_GUILD
+
+# If in test mode, use test values for token, guild, and webhooks
+if TEST_MODE:
+    TOKEN = TEST_TOKEN
+    GUILD = TEST_GUILD
+    WH = TEST_WEBHOOK
+else:
+    TOKEN = DISCORD_TOKEN
+    GUILD = DISCORD_GUILD
+    WH = BIRDMEN_WEBHOOK
 
 intents = discord.Intents.default()
 intents.members = True
@@ -129,6 +138,11 @@ async def on_message(message):
 
     elif cmd == '!version':
         await message.channel.send(f'Running Clockwork Penguin {VERSION}\n')
+
+    elif cmd == '!birdmen':
+        file_payload = discord.File('birdman.png', filename='birdman.png')
+        hook = discord.Webhook.from_url(WH, adapter=discord.RequestsWebhookAdapter())
+        hook.send(content='#birdmen!\n ***S C R E E E E E***\n', file=file_payload)
 
 
 def parse_command(content):
