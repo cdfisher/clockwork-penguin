@@ -32,4 +32,7 @@ Requires ```bot``` and ```applications.commands``` scopes and the following perm
 
 ```!version``` Prints bot version number
 
+```!birdmen``` Makes an Armadyl-aligned PKer in some very fancy boots appear! (Sends via webhooks
+so generally will only work in one channel)
+
 ```!:P``` THBBBBT!
