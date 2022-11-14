@@ -1,4 +1,4 @@
-# Clockwork Penguin (v0.1)
+# Clockwork Penguin (v0.2)
 
 ## Requirements
 ***
