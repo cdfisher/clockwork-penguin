@@ -12,7 +12,6 @@ from hs_wrapper import *
     A rate value of -1.0 indicates boss kills do not count toward EHB for that account type.
     Rates have been sourced from https://wiseoldman.net/rates/ehb
     """
-
 EHB_RATES = {'abyssal_sire': (42.0, 32.0),
              'alchemical_hydra': (27.0, 26.0),
              'barrows_chests': (-1.0, 18.0),
@@ -66,6 +65,13 @@ EHB_RATES = {'abyssal_sire': (42.0, 32.0),
 
 
 def get_ehb(boss, kc, mode):
+    """ Returns EHB value for a given boss.
+
+    :param boss: string from BOSSES in hs_wrapper.py denoting all tracked bosses
+    :param kc: int, player's kill count for :parameter boss
+    :param mode: str with value 'main' or 'iron', denoting which set of rates to use
+    :return: float representing player's efficient hours spent at :parameter boss
+    """
     if mode == 'main':
         return kc / EHB_RATES[boss][0]
     elif mode == 'iron':
@@ -75,6 +81,11 @@ def get_ehb(boss, kc, mode):
 
 
 def calc_ehb(rsn):
+    """Calculates a player's efficient hours bossed and writes to a text file.
+
+    :param rsn: str value of a player's OSRS username
+    :return: None, creates file {rsn}_ehb.txt to be sent as message attachment
+    """
     try:
         iron = is_iron(rsn)
     except ValueError:
@@ -90,15 +101,15 @@ def calc_ehb(rsn):
     outfile = rsn + '_ehb.txt'
     user = get_user(rsn)
     with open(outfile, 'w') as file:
-        file.write('{}\'s OSRS efficient hours bossed:\n'
-                   '{}'
-                   '----------------------------------------------------------\n'.format(rsn, mode_str))
+        file.write(f'{rsn}\'s OSRS efficient hours bossed:\n'
+                   f'{mode_str}'
+                   f'----------------------------------------------------------\n')
 
         for i in range(len(BOSSES)):
             kc = query_boss_kc(user, BOSSES[i])
             ehb = get_ehb(BOSSES[i], kc, mode)
             if (kc > 0) & (ehb > 0):
-                file.write('{:<34}: {:>7} KC {:>7} EHB\n'.format(FORMATTED_BOSSES[i], kc, round(ehb, 1)))
+                file.write(f'{FORMATTED_BOSSES[i]:<34}: {kc:>7} KC {round(ehb, 1):>7} EHB\n')
                 total_ehb += ehb
 
         file.write('Total: {:>7} EHB\n'.format(round(total_ehb, 2)))
@@ -107,6 +118,12 @@ def calc_ehb(rsn):
 
 
 def is_iron(rsn):
+    """Checks if a given player is an Ironman account.
+
+    :param rsn: str value of a player's OSRS username
+    :return: boolean, True if user is an ironman, False if not
+    @:raises ValueError if player is not found on highscores
+    """
     # If we find a user on the Ironman highscores, we know they're an ironman.
     # Otherwise, we check to make sure the user exists on the main highscore board
     # This isn't a great solution but it's really the only way to check an account's status
@@ -122,6 +139,11 @@ def is_iron(rsn):
 
 
 def calc_cmb_lvl(rsn):
+    """Calculates player's combat level.
+
+    :param rsn: str value of a player's OSRS username
+    :return: array levels of length 8 containing player's combat level and all related levels
+    """
     user = Highscores(rsn)
     attack = user.attack.level
     defence = user.defence.level
@@ -139,12 +161,15 @@ def calc_cmb_lvl(rsn):
     final_lvl = floor(base_lvl + max(melee_lvl, range_lvl, mage_lvl))
 
     levels = [final_lvl, attack, defence, strength, hitpoints, ranged, prayer, magic]
-
-    print(levels)
     return levels
 
 
 def get_hs(rsn):
+    """Writes all highscores entries for a player to file {rsn}.txt
+
+    :param rsn: str value of a player's OSRS username
+    :return: None, writes to file {rsn}.txt
+    """
     outfile = rsn + '.txt'
     user = get_user(rsn)
     with open(outfile, 'w') as file:
@@ -178,6 +203,12 @@ def get_hs(rsn):
 
 
 def get_skills(rsn):
+    """Writes all of a player's levels to file {rsn}.txt, provided each level is listed
+    on the OSRS Highscores.
+
+    :param rsn: str value of a player's OSRS username
+    :return: None, writes to file {rsn}.txt
+    """
     outfile = rsn + '.txt'
     user = get_user(rsn)
     with open(outfile, 'w') as file:
@@ -195,6 +226,12 @@ def get_skills(rsn):
 
 
 def get_activities(rsn):
+    """Writes all of a player's activity scores to file {rsn}.txt, provided they are
+    listed on the OSRS Highscores for each activity.
+
+    :param rsn: str value of a player's OSRS username
+    :return: None, writes to file {rsn}.txt
+    """
     outfile = rsn + '.txt'
     user = get_user(rsn)
     with open(outfile, 'w') as file:
@@ -210,6 +247,12 @@ def get_activities(rsn):
 
 
 def get_bosses(rsn):
+    """Writes all of a player's boss kill counts to file {rsn}.txt, provided they are
+    listed on the OSRS Highscores for each boss.
+
+    :param rsn: str value of a player's OSRS username
+    :return: None, writes to file {rsn}.txt
+    """
     outfile = rsn + '.txt'
     user = get_user(rsn)
     with open(outfile, 'w') as file:

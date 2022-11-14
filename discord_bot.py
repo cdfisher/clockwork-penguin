@@ -1,3 +1,9 @@
+"""discord_bot.py
+Main file for the Clockwork Penguin Discord bot
+Contains event handlers, command parser and list of
+commands/responses.
+"""
+
 import discord
 import os
 
@@ -25,12 +31,25 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    # If the bot sent a message, ignore it
+    """On message event in Discord server, checks if message contains
+    a command, and if so executes that command.
+
+    :param message: Message sent in server
+    :return: None
+    """
+
+    # Ignore messages that this bot sent itself
     if message.author == client.user:
         return
 
+    # If message is not a command, don't do anything else
+    if message.content[0] != '!':
+        return
+
+    # Break out message into command
     cmd, body = parse_command(message.content)
 
+    # if/elif tree that handles all commands
     if cmd == '!cmb':
         rsn = body
 
@@ -53,7 +72,6 @@ async def on_message(message):
                                                levels[7])
 
         await message.channel.send(response)
-        print(f'Message sent: "{response}"/n')
 
     elif cmd == '!hs':
         rsn = body
@@ -114,6 +132,12 @@ async def on_message(message):
 
 
 def parse_command(content):
+    """Breaks message.content into command and body of arguments
+
+    :param content: string message.content to parse
+    :return: string cmd, string body. If content has no arguments,
+    body returns an empty string.
+    """
     if ' ' not in content:
         return content.lower(), ''
     else:

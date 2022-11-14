@@ -10,28 +10,36 @@ at commit a6891fb but updated with specific features for this project.
 
 from osrs_highscores import Highscores
 
-
+"""List of all valid skills listed on highscores
+"""
 SKILLS = ['overall', 'attack', 'defence', 'strength', 'hitpoints', 'ranged', 'prayer', 'magic',
           'cooking', 'woodcutting', 'fletching', 'fishing', 'firemaking', 'crafting', 'smithing',
           'mining', 'herblore', 'agility', 'thieving', 'slayer', 'farming', 'runecraft', 'hunter',
           'construction']
 
+"""Formatted list of skills, index matched with SKILLS
+"""
 FORMATTED_SKILLS = ['Overall', 'Attack', 'Defence', 'Strength', 'Hitpoints', 'Ranged', 'Prayer', 'Magic',
                     'Cooking', 'Woodcutting', 'Fletching', 'Fishing', 'Firemaking', 'Crafting', 'Smithing',
                     'Mining', 'Herblore', 'Agility', 'Thieving', 'Slayer', 'Farming', 'Runecraft', 'Hunter',
                     'Construction']
 
-
+"""List of all valid activities listed on highscores
+"""
 ACTIVITIES = ['league_points', 'bounty_hunter_hunter', 'bounty_hunter_rogue', 'clue_scrolls_all',
               'clue_scrolls_beginner', 'clue_scrolls_easy', 'clue_scrolls_medium', 'clue_scrolls_hard',
               'clue_scrolls_elite', 'clue_scrolls_master', 'lms_rank', 'pvp_arena_rank',
               'soul_wars_zeal', 'rifts_closed']
 
+"""Formatted list of activities, index matched with ACTIVITIES
+"""
 FORMATTED_ACTIVITIES = ['League Points', 'Bounty Hunter (Hunter)', 'Bounty Hunter (Rogue)', 'Clue Scrolls (All)',
                         'Clue Scrolls (Beginner)', 'Clue Scrolls (Easy)', 'Clue Scrolls (Medium)',
                         'Clue Scrolls (Hard)', 'Clue Scrolls (Elite)', 'Clue Scrolls (Master)', 'LMS Rank',
                         'PvP Arena Rank', 'Soul Wars Zeal', 'Rifts Closed']
 
+"""List of all valid bosses listed on highscores
+"""
 BOSSES = ['abyssal_sire', 'alchemical_hydra', 'barrows_chests', 'bryophyta', 'callisto', 'cerberus',
           'chambers_of_xeric', 'chambers_of_xeric_challenge_mode', 'chaos_elemental', 'chaos_fanatic',
           'commander_zilyana', 'corporeal_beast', 'crazy_archaeologist', 'dagannoth_prime',
@@ -43,6 +51,8 @@ BOSSES = ['abyssal_sire', 'alchemical_hydra', 'barrows_chests', 'bryophyta', 'ca
           'tombs_of_amascut', 'tombs_of_amascut_expert_mode', 'tzkal_zuk', 'tztok_jad', 'venenatis',
           'vet_ion', 'vorkath', 'wintertodt', 'zalcano', 'zulrah']
 
+"""Formatted list of bosses, index matched with BOSSES
+"""
 FORMATTED_BOSSES = ['Abyssal Sire', 'Alchemical Hydra', 'Barrows Chests', 'Bryophyta', 'Callisto', 'Cerberus',
                     'Chambers of Xeric', 'Chambers of Xeric Challenge Mode', 'Chaos Elemental', 'Chaos Fanatic',
                     'Commander Zilyana', 'Corporeal Beast', 'Crazy Archaeologist', 'Dagannoth Prime',
@@ -187,6 +197,13 @@ def query_skill_level(user, skill):
 
 
 def query_activity_score(user, activity):
+    """ Queries activity scores listed on user's highscores page.
+
+        :param user: User object for player (as returned by get_user())
+        :param activity: String specifying the activity to query (valid values
+        are listed in ACTIVITIES)
+        :return: int of player's score in given activity.
+        """
     if activity == 'league_points':
         return int(user.league_points.score)
     elif activity == 'bounty_hunter_hunter':
