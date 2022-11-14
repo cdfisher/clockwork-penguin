@@ -12,6 +12,8 @@ Requires ```bot``` and ```applications.commands``` scopes and the following perm
 ### Python Dependencies
 ```requests ~= 2.27.1```
 
+```discord.py ~= 1.7.3```
+
 ```osrs-highscores @ git+https://github.com/cdfisher/osrs_highscores```
 
 ## Commands
@@ -29,5 +31,8 @@ Requires ```bot``` and ```applications.commands``` scopes and the following perm
 ```!ehb <user>``` Prints user's efficient hours bossed
 
 ```!version``` Prints bot version number
+
+```!birdmen``` Makes an Armadyl-aligned PKer in some very fancy boots appear! (Sends via webhooks
+so generally will only work in one channel)
 
 ```!:P``` THBBBBT!
