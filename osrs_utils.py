@@ -1,7 +1,7 @@
 """osrs_utils.py
 Various OSRS-related utility functions.
 """
-
+import numpy as np
 from math import floor
 from hs_wrapper import *
 
@@ -144,7 +144,11 @@ def calc_cmb_lvl(rsn):
     :param rsn: str value of a player's OSRS username
     :return: array levels of length 8 containing player's combat level and all related levels
     """
-    user = Highscores(rsn)
+    try:
+        user = Highscores(rsn)
+    except ValueError:
+        return [-1]
+
     attack = user.attack.level
     defence = user.defence.level
     strength = user.strength.level
@@ -152,6 +156,10 @@ def calc_cmb_lvl(rsn):
     ranged = user.ranged.level
     prayer = user.prayer.level
     magic = user.magic.level
+
+    if ((attack == -1) or (defence == -1) or (strength == -1) or (hitpoints == -1) or
+        (ranged == -1) or (prayer == -1) or (magic == -1)):
+        return [-2]
 
     base_lvl = 0.25 * (float(defence) + float(hitpoints) + (float(prayer) * 0.5))
     melee_lvl = (13 / 40) * (float(attack) + float(strength))
@@ -265,3 +273,21 @@ def get_bosses(rsn):
                 file.write('{:<34}: {:>7} KC\n'.format(FORMATTED_BOSSES[i], kc))
 
         file.close()
+
+
+def partyhat():
+    """Returns a string of a random color that aligns with the drop rate of each color partyhat
+    from a Christmas cracker"""
+    colors = ['red', 'yellow', 'white', 'green', 'blue', 'purple']
+    color_weights = [0.25, 0.22, 0.18, 0.16, 0.12, 0.07]
+    return np.random.choice(colors, p=color_weights)
+
+
+def cc_other_prize():
+    """Returns a string matching with a prize from the Christmas cracker's 'Other' drop
+    table, weighted appropriately."""
+    items = ['a chocolate bar', 'a silver bar', 'a chocolate cake', 'a spinach roll',
+             '5 noted iron ore', 'a gold ring', 'a piece of silk', 'a holy symbol',
+             'a black dagger', 'a Law rune']
+    item_weights = [0.188, 0.140, 0.125, 0.125, 0.109, 0.078, 0.078, 0.078, 0.048, 0.031]
+    return np.random.choice(items, p=item_weights)
