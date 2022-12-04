@@ -5,7 +5,7 @@ Currently uses a forked version to resolve issues which can be found here:
 https://github.com/cdfisher/osrs_highscores/
 
 Wrapper file adapted from my project Gold Partyhat: https://github.com/cdfisher/gold-partyhat
-at commit a6891fb but updated with specific features for this project.
+updated with specific features for this project.
 """
 
 from osrs_highscores import Highscores
