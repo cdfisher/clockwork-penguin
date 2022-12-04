@@ -5,7 +5,7 @@ Add bot token and server name to this file and rename to 'constants.py' before u
 
 TEST_MODE = 0
 
-VERSION = 'v0.2.2 alpha'
+VERSION = 'v0.3 alpha'
 
 DISCORD_TOKEN = ''
 DISCORD_GUILD = ''

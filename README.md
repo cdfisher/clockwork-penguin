@@ -1,4 +1,4 @@
-# Clockwork Penguin (v0.2)
+# Clockwork Penguin (v0.3)
 
 ## Requirements
 ***
@@ -34,5 +34,7 @@ Requires ```bot``` and ```applications.commands``` scopes and the following perm
 
 ```!birdmen``` Makes an Armadyl-aligned PKer in some very fancy boots appear! (Sends via webhooks
 so generally will only work in one channel)
+
+```!christmas-cracker <user1>+<user2>``` Pulls a Christmas cracker!
 
 ```!:P``` THBBBBT!
