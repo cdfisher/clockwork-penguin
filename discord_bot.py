@@ -5,11 +5,11 @@ commands/responses.
 """
 
 import os
-
 import discord
 
 from config import *
 from osrs_utils import *
+from webhook_handler import WebhookHandler
 
 
 # If in test mode, use test values for token, guild, and webhooks
@@ -20,7 +20,7 @@ if TEST_MODE:
 else:
     TOKEN = DISCORD_TOKEN
     GUILD = DISCORD_GUILD
-    WH = BIRDMEN_WEBHOOK
+    WH = WEBHOOK
 
 intents = discord.Intents.default()
 intents.members = True
@@ -69,9 +69,11 @@ async def on_message(message):
 
         if levels[0] == [-1]:
             response = f'User {rsn} not found!'
+            await message.channel.send(response)
         elif levels[0] == [-2]:
             response = f'Cannot calculate user {rsn}\'s combat' \
                        f'level as not all skills are listed on the highscores.\n'
+            await message.channel.send(response)
         else:
             embed = discord.Embed(title=rsn + "\'s Combat level:", description=levels[0], color=0xff0000)
             embed.add_field(name="Attack", value=levels[1])
@@ -82,7 +84,7 @@ async def on_message(message):
             embed.add_field(name="Prayer", value=levels[6])
             embed.add_field(name="Magic", value=levels[7])
 
-        await message.channel.send(embed=embed)
+            await message.channel.send(embed=embed)
 
     elif cmd == '!hs':
         # If the required argument is missing, stop here
@@ -157,21 +159,9 @@ async def on_message(message):
         await message.channel.send(f'Running Clockwork Penguin {VERSION}\n')
 
     elif cmd == '!birdmen':
-        file_payload = discord.File('resources/birdman.png', filename='resources/birdman.png')
-        hook = discord.Webhook.from_url(WH, adapter=discord.RequestsWebhookAdapter())
-        hook.send(content='#birdmen!\n ***S C R E E E E E***\n', file=file_payload)
-        # file = {'birdman.png': open('birdman.png', 'rb')}
-        # data = {
-        #     'content': '#birdmen!\n ***S C R E E E E E***\n'
-        # }
-        #
-        # result = requests.post(WH, json=data, files=file)
-        # try:
-        #     result.raise_for_status()
-        # except requests.exceptions.HTTPError as err:
-        #     print(err)
-        # else:
-        #     print(f'Payload delivered with code {result.status_code}\n')
+        wh = WebhookHandler()
+        wh.send_file('#birdmen!\n ***S C R E E E E E***\n', filename='resources/birdman.png', name='Kree\'arra',
+                     avatar=BIRDMAN_AVATAR)
     elif cmd == '!christmas-cracker':
         user_1, user_2 = body.split('+', maxsplit=1)
         users = [user_1, user_2]
