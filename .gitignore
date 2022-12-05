@@ -9,6 +9,9 @@ config.py
 # Temporary text files that may be lingering
 *.txt
 
+# Files used for testing
+*test.py
+
 # virtualenv
 .venv
 venv/
@@ -56,3 +59,4 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+/server/
