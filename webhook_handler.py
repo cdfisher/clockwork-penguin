@@ -10,7 +10,7 @@ import requests
 import datetime
 
 from config import *
-from logging import log_message
+from logging_ import log_message
 
 if TEST_MODE:
     wh_url = TEST_WEBHOOK
