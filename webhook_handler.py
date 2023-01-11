@@ -52,7 +52,7 @@ class WebhookHandler:
             now = datetime.datetime.now()
             timestamp = now.strftime('%d %b %Y - %H:%M:%S ')
             log_message(f'Text payload delivered with code {response.status_code} '
-                        f'at {timestamp}\n')
+                        f'at {timestamp}')
             self.webhook_data = {}
             self._files = {}
 
@@ -69,6 +69,6 @@ class WebhookHandler:
             now = datetime.datetime.now()
             timestamp = now.strftime('%d %b %Y - %H:%M:%S ')
             log_message(f'File payload delivered with code {response.status_code}'
-                        f' at {timestamp}\n')
+                        f' at {timestamp}')
         self.webhook_data = {}
         self._files = {}
