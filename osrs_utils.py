@@ -159,15 +159,18 @@ def calc_cmb_lvl(rsn):
     magic = user.magic.level
 
     if ((attack == -1) or (defence == -1) or (strength == -1) or (hitpoints == -1) or
-        (ranged == -1) or (prayer == -1) or (magic == -1)):
+            (ranged == -1) or (prayer == -1) or (magic == -1)):
         return [-2]
 
-    base_lvl = 0.25 * (float(defence) + float(hitpoints) + (float(prayer) * 0.5))
-    melee_lvl = (13 / 40) * (float(attack) + float(strength))
-    range_lvl = (13 / 40) * (float(ranged) * (3 / 2))
-    mage_lvl = (13 / 40) * (float(magic) * (3 / 2))
+    base_lvl = round((0.25 * (float(defence) + float(hitpoints) + floor((float(prayer) * 0.5)))), 4)
+    melee_lvl = round((13 / 40) * (float(attack) + float(strength)), 4)
+    range_lvl = round((13 / 40) * floor((float(ranged) * (3 / 2))), 4)
+    mage_lvl = round((13 / 40) * floor((float(magic) * (3 / 2))), 4)
 
     final_lvl = floor(base_lvl + max(melee_lvl, range_lvl, mage_lvl))
+
+# Partial combat levels as seen in Runelite
+#    final_lvl = base_lvl + max(melee_lvl, range_lvl, mage_lvl)
 
     levels = [final_lvl, attack, defence, strength, hitpoints, ranged, prayer, magic]
     return levels
