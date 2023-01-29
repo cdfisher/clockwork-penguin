@@ -5,7 +5,7 @@ Add bot token and server name to this file and rename to 'constants.py' before u
 
 TEST_MODE = 0
 
-VERSION = 'v0.3.2 alpha'
+VERSION = 'v0.3.3 alpha'
 # Default avatar to use when sending messages via webhooks
 AVATAR_URL = 'https://github.com/cdfisher/clockwork-penguin/blob/master/resources/icon.png?raw=true'
 # Default bot name to use when sending messages via webhooks
