@@ -81,16 +81,21 @@ def get_ehb(boss, kc, mode):
         print(f'{mode} not recognized\n')
 
 
-def calc_ehb(rsn):
+def calc_ehb(rsn, is_ironman=None):
     """Calculates a player's efficient hours bossed and writes to a text file.
 
     :param rsn: str value of a player's OSRS username
+    :param is_ironman: Optional boolean value to indicate the player is an ironman.
     :return: None, creates file {rsn}_ehb.txt to be sent as message attachment
     """
-    try:
-        iron = is_iron(rsn)
-    except ValueError:
-        return f'User {rsn} not found!\n'
+    if is_ironman is None:
+        try:
+            iron = is_iron(rsn)
+        except ValueError:
+            print(f'User {rsn} not found!')
+            return -1.0
+    else:
+        iron = is_ironman
 
     if iron:
         mode = 'iron'

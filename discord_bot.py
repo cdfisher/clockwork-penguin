@@ -22,11 +22,23 @@ else:
     GUILD = DISCORD_GUILD
     WH = WEBHOOK
 
+IRON_DICT_NAME = 'ironmen_dictionary.txt'
+
 intents = discord.Intents.default()
 intents.members = True
 intents.messages = True
 
 client = discord.Client(intents=intents)
+
+# If a file caching iron/main status exists, open it and read as a dict. Otherwise, create it as an empty file.
+if os.path.exists(IRON_DICT_NAME) and os.path.getsize(IRON_DICT_NAME) != 0:
+    with open(IRON_DICT_NAME, 'r') as iron_file:
+        iron_dict = eval(iron_file.read())
+else:
+
+    iron_file = open(IRON_DICT_NAME, 'w')
+    iron_file.close()
+    iron_dict = dict()
 
 
 @client.event
@@ -131,7 +143,19 @@ async def on_message(message):
             return
 
         rsn = body
-        calc_ehb(rsn)
+
+        # Check cached list of iron/main status to speed things up immensely.
+        if rsn in iron_dict:
+            is_ironman = iron_dict[rsn]
+        else:
+            is_ironman = is_iron(rsn)
+            iron_dict[rsn] = is_ironman
+
+            # Write updated copy of dictionary to file
+            with open(IRON_DICT_NAME, 'w') as iron_outfile:
+                iron_outfile.write(str(iron_dict))
+
+        calc_ehb(rsn, is_ironman)
 
         file = rsn + '_ehb.txt'
         file_payload = discord.File(file, filename=(rsn + '_ehb.txt'))
