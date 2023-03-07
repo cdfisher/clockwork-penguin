@@ -145,11 +145,11 @@ async def on_message(message):
         rsn = body
 
         # Check cached list of iron/main status to speed things up immensely.
-        if rsn in iron_dict:
-            is_ironman = iron_dict[rsn]
+        if rsn.lower() in iron_dict:
+            is_ironman = iron_dict[rsn.lower()]
         else:
-            is_ironman = is_iron(rsn)
-            iron_dict[rsn] = is_ironman
+            is_ironman = is_iron(rsn.lower())
+            iron_dict[rsn.lower()] = is_ironman
 
             # Write updated copy of dictionary to file
             with open(IRON_DICT_NAME, 'w') as iron_outfile:
