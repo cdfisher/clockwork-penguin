@@ -40,29 +40,30 @@ FORMATTED_ACTIVITIES = ['League Points', 'Bounty Hunter (Hunter)', 'Bounty Hunte
 
 """List of all valid bosses listed on highscores
 """
-BOSSES = ['abyssal_sire', 'alchemical_hydra', 'barrows_chests', 'bryophyta', 'callisto', 'cerberus',
-          'chambers_of_xeric', 'chambers_of_xeric_challenge_mode', 'chaos_elemental', 'chaos_fanatic',
+BOSSES = ['abyssal_sire', 'alchemical_hydra', 'artio', 'barrows_chests', 'bryophyta', 'callisto', 'calvar_ion',
+          'cerberus', 'chambers_of_xeric', 'chambers_of_xeric_challenge_mode', 'chaos_elemental', 'chaos_fanatic',
           'commander_zilyana', 'corporeal_beast', 'crazy_archaeologist', 'dagannoth_prime',
           'dagannoth_rex', 'dagannoth_supreme', 'deranged_archaeologist', 'general_graardor',
           'giant_mole', 'grotesque_guardians', 'hespori', 'kalphite_queen', 'king_black_dragon',
           'kraken', 'kree_arra', 'kril_tsutsaroth', 'mimic', 'nex', 'nightmare', 'phosanis_nightmare',
-          'obor', 'phantom_muspah', 'sarachnis', 'scorpia', 'skotizo', 'tempoross', 'the_gauntlet', 'the_corrupted_gauntlet',
-          'theatre_of_blood', 'theatre_of_blood_hard_mode', 'thermonuclear_smoke_devil',
+          'obor', 'phantom_muspah', 'sarachnis', 'scorpia', 'skotizo', 'spindel', 'tempoross', 'the_gauntlet',
+          'the_corrupted_gauntlet', 'theatre_of_blood', 'theatre_of_blood_hard_mode', 'thermonuclear_smoke_devil',
           'tombs_of_amascut', 'tombs_of_amascut_expert_mode', 'tzkal_zuk', 'tztok_jad', 'venenatis',
           'vet_ion', 'vorkath', 'wintertodt', 'zalcano', 'zulrah']
 
 """Formatted list of bosses, index matched with BOSSES
 """
-FORMATTED_BOSSES = ['Abyssal Sire', 'Alchemical Hydra', 'Barrows Chests', 'Bryophyta', 'Callisto', 'Cerberus',
-                    'Chambers of Xeric', 'Chambers of Xeric Challenge Mode', 'Chaos Elemental', 'Chaos Fanatic',
-                    'Commander Zilyana', 'Corporeal Beast', 'Crazy Archaeologist', 'Dagannoth Prime',
-                    'Dagannoth Rex', 'Dagannoth Supreme', 'Deranged Archaeologist', 'General Graardor',
-                    'Giant Mole', 'Grotesque Guardians', 'Hespori', 'Kalphite Queen', 'King Black Dragon',
-                    'Kraken', 'Kree\'arra', 'K\'ril Tsutsaroth', 'Mimic', 'Nex', 'Nightmare', 'Phosani\'s Nightmare',
-                    'Obor', 'Phantom Muspah', 'Sarachnis', 'Scorpia', 'Skotizo', 'Tempoross', 'The Gauntlet',
-                    'The Corrupted Gauntlet', 'Theatre of Blood', 'Theatre of Blood Hard Mode',
-                    'Thermonuclear Smoke Devil', 'Tombs of Amascut', 'Tombs of Amascut Expert Mode', 'TzKal-Zuk',
-                    'TzTok-Jad', 'Venenatis', 'Vet\'ion', 'Vorkath', 'Wintertodt', 'Zalcano', 'Zulrah']
+FORMATTED_BOSSES = ['Abyssal Sire', 'Alchemical Hydra', 'Artio', 'Barrows Chests', 'Bryophyta', 'Callisto',
+                    'Calvar\'ion', 'Cerberus', 'Chambers of Xeric', 'Chambers of Xeric Challenge Mode',
+                    'Chaos Elemental', 'Chaos Fanatic', 'Commander Zilyana', 'Corporeal Beast', 'Crazy Archaeologist',
+                    'Dagannoth Prime', 'Dagannoth Rex', 'Dagannoth Supreme', 'Deranged Archaeologist',
+                    'General Graardor', 'Giant Mole', 'Grotesque Guardians', 'Hespori', 'Kalphite Queen',
+                    'King Black Dragon', 'Kraken', 'Kree\'arra', 'K\'ril Tsutsaroth', 'Mimic', 'Nex', 'Nightmare',
+                    'Phosani\'s Nightmare', 'Obor', 'Phantom Muspah', 'Sarachnis', 'Scorpia', 'Skotizo', 'Spindel',
+                    'Tempoross', 'The Gauntlet', 'The Corrupted Gauntlet', 'Theatre of Blood',
+                    'Theatre of Blood Hard Mode', 'Thermonuclear Smoke Devil', 'Tombs of Amascut',
+                    'Tombs of Amascut Expert Mode', 'TzKal-Zuk', 'TzTok-Jad', 'Venenatis', 'Vet\'ion', 'Vorkath',
+                    'Wintertodt', 'Zalcano', 'Zulrah']
 
 
 def get_user(rsn):

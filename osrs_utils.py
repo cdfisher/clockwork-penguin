@@ -12,57 +12,60 @@ from hs_wrapper import *
     A rate value of -1.0 indicates boss kills do not count toward EHB for that account type.
     Rates have been sourced from https://wiseoldman.net/rates/ehb
     """
-EHB_RATES = {'abyssal_sire': (42.0, 32.0),
-             'alchemical_hydra': (27.0, 26.0),
-             'barrows_chests': (-1.0, 18.0),
+EHB_RATES = {'abyssal_sire': (45.0, 32.0),
+             'alchemical_hydra': (32.0, 29.0),
+             'artio': (-1.0, -1.0),
+             'barrows_chests': (-1.0, 22.0),
              'bryophyta': (-1.0, 9.0),
              'callisto': (50.0, 30.0),
+             'calvar_ion': (-1.0, -1.0),
              'cerberus': (61.0, 54.0),
-             'chambers_of_xeric': (3.0, 2.8),
-             'chambers_of_xeric_challenge_mode': (2.2, 2.0),
+             'chambers_of_xeric': (3.0, 2.9),
+             'chambers_of_xeric_challenge_mode': (2.4, 2.0),
              'chaos_elemental': (60.0, 48.0),
              'chaos_fanatic': (100.0, 80.0),
-             'commander_zilyana': (55.0, 25.0),
-             'corporeal_beast': (50.0, 6.5),
+             'commander_zilyana': (55.0, 28.0),
+             'corporeal_beast': (60.0, 8.5),
              'crazy_archaeologist': (-1.0, 75.0),
-             'dagannoth_prime': (88.0, 88.0),
-             'dagannoth_rex': (88.0, 88.0),
-             'dagannoth_supreme': (88.0, 88.0),
+             'dagannoth_prime': (100.0, 100.0),
+             'dagannoth_rex': (100.0, 100.0),
+             'dagannoth_supreme': (100.0, 100.0),
              'deranged_archaeologist': (-1.0, 80.0),
-             'general_graardor': (50.0, 25.0),
-             'giant_mole': (100.0, 80.0),
-             'grotesque_guardians': (36.0, 31.0),
+             'general_graardor': (55.0, 25.0),
+             'giant_mole': (100.0, 90.0),
+             'grotesque_guardians': (36.0, 33.0),
              'hespori': (-1.0, 60.0),
-             'kalphite_queen': (50.0, 30.0),
-             'king_black_dragon': (120.0, 70.0),
-             'kraken': (90.0, 82.0),
-             'kree_arra': (25.0, 22.0),
+             'kalphite_queen': (50.0, 33.0),
+             'king_black_dragon': (120.0, 75.0),
+             'kraken': (100.0, 82.0),
+             'kree_arra': (40.0, 27.0),
              'kril_tsutsaroth': (65.0, 26.0),
              'mimic': (-1.0, 60.0),
-             'nex': (12.0, 12.0),
+             'nex': (13.0, 12.0),
              'nightmare': (14.0, 11.0),
-             'phosanis_nightmare': (7.5, 6.5),
+             'phosanis_nightmare': (7.0, 6.5),
              'obor': (-1.0, 12.0),
-             'phantom_muspah': (-1.0, -1.0),
+             'phantom_muspah': (25.0, 25.0),
              'sarachnis': (80.0, 56.0),
              'scorpia': (130.0, 60.0),
              'skotizo': (45.0, 38.0),
+             'spindel': (-1.0, -1.0),
              'tempoross': (-1.0, -1.0),
              'the_gauntlet': (10.0, 10.0),
-             'the_corrupted_gauntlet': (6.5, 6.5),
-             'theatre_of_blood': (3.0, 2.5),
+             'the_corrupted_gauntlet': (7.0, 7.2),
+             'theatre_of_blood': (3.0, 2.9),
              'theatre_of_blood_hard_mode': (3.0, 2.4),
-             'thermonuclear_smoke_devil': (125.0, 80.0),
-             'tombs_of_amascut': (2.5, 2.5),
-             'tombs_of_amascut_expert_mode': (2.0, 2.0),
-             'tzkal_zuk': (0.8, 0.8),
+             'thermonuclear_smoke_devil': (125.0, 100.0),
+             'tombs_of_amascut': (3.5, 2.5),
+             'tombs_of_amascut_expert_mode': (3.0, 2.0),
+             'tzkal_zuk': (0.8, 0.9),
              'tztok_jad': (2.0, 2.0),
              'venenatis': (50.0, 35.0),
              'vet_ion': (30.0, 23.0),
-             'vorkath': (32.0, 32.0),
+             'vorkath': (34.0, 33.0),
              'wintertodt': (-1.0, -1.0),
              'zalcano': (-1.0, -1.0),
-             'zulrah': (35.0, 32.0)}
+             'zulrah': (40.0, 39.0)}
 
 
 def get_ehb(boss, kc, mode):
@@ -81,16 +84,21 @@ def get_ehb(boss, kc, mode):
         print(f'{mode} not recognized\n')
 
 
-def calc_ehb(rsn):
+def calc_ehb(rsn, is_ironman=None):
     """Calculates a player's efficient hours bossed and writes to a text file.
 
     :param rsn: str value of a player's OSRS username
+    :param is_ironman: Optional boolean value to indicate the player is an ironman.
     :return: None, creates file {rsn}_ehb.txt to be sent as message attachment
     """
-    try:
-        iron = is_iron(rsn)
-    except ValueError:
-        return f'User {rsn} not found!\n'
+    if is_ironman is None:
+        try:
+            iron = is_iron(rsn)
+        except ValueError:
+            print(f'User {rsn} not found!')
+            return -1.0
+    else:
+        iron = is_ironman
 
     if iron:
         mode = 'iron'
