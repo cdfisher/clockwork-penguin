@@ -60,3 +60,4 @@ wheels/
 .installed.cfg
 *.egg
 /server/
+/osrs-tools/
