@@ -26,14 +26,15 @@ FORMATTED_SKILLS = ['Overall', 'Attack', 'Defence', 'Strength', 'Hitpoints', 'Ra
 
 """List of all valid activities listed on highscores
 """
-ACTIVITIES = ['league_points', 'bounty_hunter_hunter', 'bounty_hunter_rogue', 'clue_scrolls_all',
-              'clue_scrolls_beginner', 'clue_scrolls_easy', 'clue_scrolls_medium', 'clue_scrolls_hard',
-              'clue_scrolls_elite', 'clue_scrolls_master', 'lms_rank', 'pvp_arena_rank',
-              'soul_wars_zeal', 'rifts_closed']
+ACTIVITIES = ['league_points', 'bounty_hunter_hunter', 'bounty_hunter_rogue', 'bounty_hunter_legacy_hunter',
+              'bounty_hunter_legacy_rogue', 'clue_scrolls_all', 'clue_scrolls_beginner', 'clue_scrolls_easy',
+              'clue_scrolls_medium', 'clue_scrolls_hard', 'clue_scrolls_elite', 'clue_scrolls_master', 'lms_rank',
+              'pvp_arena_rank', 'soul_wars_zeal', 'rifts_closed']
 
 """Formatted list of activities, index matched with ACTIVITIES
 """
-FORMATTED_ACTIVITIES = ['League Points', 'Bounty Hunter (Hunter)', 'Bounty Hunter (Rogue)', 'Clue Scrolls (All)',
+FORMATTED_ACTIVITIES = ['League Points', 'Bounty Hunter (Hunter)', 'Bounty Hunter (Rogue)',
+                        'Bounty Hunter (Legacy) - Hunter', 'Bounty Hunter (Legacy) - Rogue', 'Clue Scrolls (All)',
                         'Clue Scrolls (Beginner)', 'Clue Scrolls (Easy)', 'Clue Scrolls (Medium)',
                         'Clue Scrolls (Hard)', 'Clue Scrolls (Elite)', 'Clue Scrolls (Master)', 'LMS Rank',
                         'PvP Arena Rank', 'Soul Wars Zeal', 'Rifts Closed']
